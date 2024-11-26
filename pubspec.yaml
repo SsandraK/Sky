@@ -1,0 +1,38 @@
+name: sky_map
+description: "A new Flutter project."
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.0.0 
+  sensors_plus: ^3.0.0
+  geolocator: ^9.0.2
+  http: ^0.13.6
+  intl: ^0.19.0
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/bg_sky.jpeg
+    - assets/sun.png
+    - assets/moon.png
+    - assets/venus.png
+    - assets/earth.png
+    - assets/mars.png
+    - assets/jupiter.png
+    - assets/saturn.png
+    - assets/uranus.png
+    - assets/neptune.png
