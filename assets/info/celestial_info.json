@@ -1,0 +1,52 @@
+{
+    "Mercury": {
+      "description": "Mercury, the closest planet to the Sun, is the smallest in the Solar System. It is a rocky terrestrial planet with a heavily cratered surface, showcasing its long history of impact events. Mercury has extreme temperature variations and no atmosphere to retain heat.",
+   
+      "moons": "None"
+    },
+    "Venus": {
+      "description": "Venus, the second planet from the Sun, is similar in size and structure to Earth but has a thick, toxic atmosphere rich in carbon dioxide. Its surface is covered with volcanoes and vast plains, and it experiences the hottest temperatures of any planet in the Solar System.",
+
+      "moons": "None"
+    },
+    "Mars": {
+      "description": "Mars, known as the Red Planet, is the fourth planet from the Sun. Its surface is marked by iron oxide, giving it a reddish appearance. Mars features massive volcanoes, deep canyons, and polar ice caps. It has two small moons, Phobos and Deimos.",
+    
+      "moons": "Phobos and Deimos"
+    },
+    "Jupiter": {
+      "description": "Jupiter is the largest planet in the Solar System and the fifth from the Sun. A gas giant, it is primarily made of hydrogen and helium. Its Great Red Spot, a massive storm, is a prominent feature. Jupiter has the most moons of any planet, with over 95 confirmed.",
+   
+      "moons": "At least 95"
+    },
+    "Saturn": {
+      "description": "Saturn, the sixth planet from the Sun, is renowned for its magnificent ring system, made mostly of ice particles and rocky debris. Like Jupiter, it is a gas giant. Saturn is also known for its large number of moons, with over 140 confirmed.",
+   
+      "moons": "At least 146"
+    },
+    "Uranus": {
+      "description": "Uranus is an ice giant and the seventh planet from the Sun. Its pale blue-green color is due to methane in its atmosphere. Uranus rotates on its side, making it unique among planets. It is cold and has faint rings and many moons.",
+     
+      "moons": "28"
+    },
+    "Neptune": {
+      "description": "Neptune, the eighth and farthest planet from the Sun, is a deep blue gas giant. It has powerful winds and storms, including the Great Dark Spot. Its atmosphere is primarily hydrogen, helium, and methane, giving it its distinctive color.",
+      "moons": "16"
+    },
+    "Moon": {
+      "description": "The Moon is Earth's only natural satellite and the fifth-largest in the Solar System. It influences Earth's tides and has a heavily cratered surface from billions of years of impacts. The Moon is a critical reference point for human space exploration."
+    },
+    "Sun": {
+      "description": "The Sun is a massive star at the center of the Solar System. It provides light and heat essential for life on Earth. Its core undergoes nuclear fusion, converting hydrogen into helium, releasing immense energy that powers the Solar System."
+    },
+    "Ursa Minor": {
+      "description": "Ursa Minor, or the Little Bear, is a constellation in the northern sky. Its most famous star is Polaris, the North Star, which has guided travelers for centuries. Ursa Minor contains the Little Dipper asterism."
+    },
+    "Ursa Major": {
+      "description": "Ursa Major, the Great Bear, is one of the most recognizable constellations. It contains the Big Dipper, an asterism that has been significant in various cultures for navigation and folklore."
+    },
+    "Orion": {
+      "description": "Orion is one of the most iconic constellations, visible in winter skies. It contains Betelgeuse and Rigel, two of the brightest stars, and the Orion Nebula, a stellar nursery. It represents a hunter in Greek mythology."
+    }
+  }
+  

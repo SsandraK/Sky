@@ -1,10 +1,15 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sky_map/helpers/calc_celestial.dart';
+import 'package:sky_map/models/stars.dart';
+import 'package:sky_map/service/constellations_data.dart';
 import 'package:sky_map/service/planet_data.dart';
 import 'package:sky_map/service/sensor_location.dart';
 import 'package:sky_map/widgets/planets_widget.dart';
 import 'package:sky_map/widgets/sensor_info_widget.dart';
+import 'package:sky_map/widgets/constellation_widget.dart';
 
 
 class SkyMapScreen extends StatefulWidget {
@@ -15,59 +20,59 @@ class SkyMapScreen extends StatefulWidget {
 }
 
 class SkyMapScreenState extends State<SkyMapScreen> {
+
   @override
   void initState() {
     super.initState();
-    // Access the LocationProvider instance from the provider context
-   final locationProvider = Provider.of<SensorLocation>(context, listen: false);
 
-    // Initialize CelestialCalculations with the LocationProvider
+    // Fetch location data and initialize celestial calculations
+    final locationProvider = Provider.of<SensorLocation>(context, listen: false);
     CelestialCalculations.initialize(locationProvider);
 
-    // Fetch data for all planets once the widget is initialized
-    final celestialDataProvider =
-        Provider.of<FetchPlanetData>(context, listen: false);
+    // Fetch planetary data
+    final celestialDataProvider = Provider.of<FetchPlanetData>(context, listen: false);
     celestialDataProvider.fetchPlanets();
 
-    // Fetch data for all constellations
-    // final constellationDataProvider =
-    //     Provider.of<ConstellationDataProvider>(context, listen: false);
-    // constellationDataProvider.fetchAllConstellationsData();
+    // Fetch constellation data
+    final constellationDataProvider = Provider.of<ConstellationDataProvider>(context, listen: false);
+    constellationDataProvider.fetchAllConstellationsData(constellations);
   }
 
   @override
   Widget build(BuildContext context) {
     final celestialDataProvider = Provider.of<FetchPlanetData>(context);
-    // final constellationDataProvider =
-    //     Provider.of<ConstellationDataProvider>(context);
+    final constellationDataProvider = Provider.of<ConstellationDataProvider>(context);
 
-
-
-  return Scaffold(
+    return Scaffold(
       appBar: AppBar(title: const Text('Sky Map')),
       body: Stack(
         children: [
           // Background Image
-          SizedBox.expand(
-            child: Image.asset(
-              'assets/bg_sky.jpeg',
-              fit: BoxFit.cover,
-            ),
-          ),
+         SizedBox.expand(
+  child: Stack(
+    fit: StackFit.expand,
+    children: [
+      Image.asset(
+        'assets/bg_sky.jpeg',
+        fit: BoxFit.cover,
+      ),
+      // Apply the blur effect
+      BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 1.0, sigmaY: .0), // Adjust sigma for more/less blur
+        child: Container(
+          color: Colors.black.withOpacity(0), // Transparent overlay to retain blur
+        ),
+      ),
+    ],
+  ),
+),
 
-          // Center Content (optional)
-          const Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [],
-            ),
-          ),
 
-          // Display planets as PlanetWidgets if data is available
+          // Display planets as widgets
           if (celestialDataProvider.planetData.isNotEmpty)
             ...celestialDataProvider.planetData.entries.map((entry) {
-              String planetName = entry.key;
-              var data = entry.value;
+              final String planetName = entry.key;
+              final data = entry.value;
 
               if (data.containsKey('azimuth') && data.containsKey('altitude')) {
                 return PlanetsWidget(
@@ -77,12 +82,20 @@ class SkyMapScreenState extends State<SkyMapScreen> {
                   deviceWidth: MediaQuery.of(context).size.width,
                   deviceHeight: MediaQuery.of(context).size.height,
                 );
-              } else {
-                return const SizedBox.shrink();
               }
+              return const SizedBox.shrink();
             }).toList(),
 
-          // Current Position Data (Sensor Info) at the bottom
+          // Display constellations as widgets
+        if (constellationDataProvider.constellationData.isNotEmpty)
+              ConstellationWidget(
+                constellationsData: constellationDataProvider.constellationData,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+              ),
+
+
+          // Sensor info widget at the bottom
           const Positioned(
             bottom: 15,
             left: 10,

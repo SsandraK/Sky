@@ -30,7 +30,6 @@ flutter:
     - assets/sun.png
     - assets/moon.png
     - assets/venus.png
-    - assets/earth.png
     - assets/mars.png
     - assets/jupiter.png
     - assets/saturn.png

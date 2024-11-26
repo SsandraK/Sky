@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sky_map/screens/sky_map_screen.dart';
+import 'package:sky_map/service/constellations_data.dart';
 import 'package:sky_map/service/planet_data.dart';
 import 'package:sky_map/service/sensor_location.dart';
 
@@ -24,7 +25,9 @@ class MyApp extends StatelessWidget {
           update: (context, locationProvider, previous) =>
               previous!..updateLocationProvider(locationProvider),
         ),
-      ],
+        ChangeNotifierProvider(create: (_) => ConstellationDataProvider(apiKey:'V6vQWnnd6V++ZGEztnGTiw==RpMGlbSXCmtuvp5T'),
+    ),
+    ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Sky Map',

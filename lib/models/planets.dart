@@ -15,8 +15,6 @@ class Planet {
     Planet(
       name: "Venus", command: "299", imagePath: 'assets/venus.png'),
     Planet(
-      name: "Earth", command: "399", imagePath: 'assets/earth.png'),
-    Planet(
       name: "Mars", command: "499", imagePath: 'assets/mars.png'),
     Planet(
       name: "Jupiter", command: "599", imagePath: 'assets/jupiter.png'),
