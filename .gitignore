@@ -41,3 +41,16 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Ignore Gradle files
+android/.gradle/
+android/gradle/wrapper/gradle-wrapper.jar
+
+# Ignore binaries and other large files
+*.bin
+*.lock
+*.jar
+*.exe
+*.war
+
+
