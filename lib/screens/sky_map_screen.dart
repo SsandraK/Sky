@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sky_map/helpers/calc_celestial.dart';
@@ -7,6 +5,7 @@ import 'package:sky_map/models/stars.dart';
 import 'package:sky_map/service/constellations_data.dart';
 import 'package:sky_map/service/planet_data.dart';
 import 'package:sky_map/service/sensor_location.dart';
+import 'package:sky_map/widgets/background_widget.dart';
 import 'package:sky_map/widgets/planets_widget.dart';
 import 'package:sky_map/widgets/sensor_info_widget.dart';
 import 'package:sky_map/widgets/constellation_widget.dart';
@@ -43,30 +42,10 @@ class SkyMapScreenState extends State<SkyMapScreen> {
     final celestialDataProvider = Provider.of<FetchPlanetData>(context);
     final constellationDataProvider = Provider.of<ConstellationDataProvider>(context);
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Sky Map')),
-      body: Stack(
-        children: [
-          // Background Image
-         SizedBox.expand(
-  child: Stack(
-    fit: StackFit.expand,
-    children: [
-      Image.asset(
-        'assets/bg_sky.jpeg',
-        fit: BoxFit.cover,
-      ),
-      // Apply the blur effect
-      BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 1.0, sigmaY: .0), // Adjust sigma for more/less blur
-        child: Container(
-          color: Colors.black.withOpacity(0), // Transparent overlay to retain blur
-        ),
-      ),
-    ],
-  ),
-),
-
+  return Scaffold(
+    body: Stack(
+      children: [
+        const BackgroundWidget(),
 
           // Display planets as widgets
           if (celestialDataProvider.planetData.isNotEmpty)
@@ -84,16 +63,17 @@ class SkyMapScreenState extends State<SkyMapScreen> {
                 );
               }
               return const SizedBox.shrink();
-            }).toList(),
+            }),
 
           // Display constellations as widgets
         if (constellationDataProvider.constellationData.isNotEmpty)
+      
               ConstellationWidget(
+       
                 constellationsData: constellationDataProvider.constellationData,
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
               ),
-
 
           // Sensor info widget at the bottom
           const Positioned(
@@ -104,6 +84,5 @@ class SkyMapScreenState extends State<SkyMapScreen> {
           ),
         ],
       ),
-    );
-  }
+  );}
 }

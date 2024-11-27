@@ -13,6 +13,8 @@ class Stars {
 final List<String> constellations = [
   'Ursa Minor',
   'Ursa Major',
-  'Orion',
+  'Cassiopeia',
+  'Lyra',
+
 ];
 

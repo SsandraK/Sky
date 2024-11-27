@@ -73,18 +73,19 @@ class ConstellationDataProvider with ChangeNotifier {
       await fetchConstellationData(constellation);
     }
     debugPrint("All constellation data fetched: $constellationData");
+// debugPrint("Data for Ursa Minor: ${constellationData['Ursa Minor']}");
+// debugPrint("Data for Ursa Major: ${constellationData['Ursa Major']}");
+// debugPrint("Data for Orion: ${constellationData['Orion']}");
+    debugPrint("Data for Orion: ${constellationData['Lyra']}");
   }
 
   /// Helper method to convert RA/Dec from string to decimal
   double convertToDecimal(String input) {
- 
     input = input.replaceAll(RegExp(r'[^\d+\-.\s]'), '');
 
     // Split by whitespace to get parts (hours/degrees, minutes, seconds)
-    final parts = input
-        .split(RegExp(r'\s+'))
-        .where((part) => part.isNotEmpty)
-        .toList();
+    final parts =
+        input.split(RegExp(r'\s+')).where((part) => part.isNotEmpty).toList();
 
     if (parts.length < 3) return 0.0;
 
@@ -93,7 +94,6 @@ class ConstellationDataProvider with ChangeNotifier {
     final double minutes = double.tryParse(parts[1]) ?? 0.0;
     final double seconds = double.tryParse(parts[2]) ?? 0.0;
 
- 
     double decimalValue = primary.abs() + (minutes / 60) + (seconds / 3600);
     return primary.isNegative ? -decimalValue : decimalValue;
   }

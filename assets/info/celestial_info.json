@@ -47,6 +47,14 @@
     },
     "Orion": {
       "description": "Orion is one of the most iconic constellations, visible in winter skies. It contains Betelgeuse and Rigel, two of the brightest stars, and the Orion Nebula, a stellar nursery. It represents a hunter in Greek mythology."
-    }
+    },
+    "Cassiopeia": {
+  "description": "Cassiopeia is a prominent constellation in the northern sky, named after the vain queen in Greek mythology. Its distinctive 'W' shape, formed by five bright stars, makes it easily recognizable. Cassiopeia is home to the Heart and Soul Nebulae, and the Milky Way runs through it, offering rich star fields for observation. It is visible throughout the year in the Northern Hemisphere."
+}, 
+"Lyra": {
+  "description": "Lyra is a small yet striking constellation in the northern sky, representing the lyre of Orpheus from Greek mythology. It is home to Vega, one of the brightest stars in the night sky and part of the Summer Triangle asterism. Lyra also contains the famous Ring Nebula (M57), a planetary nebula that appears as a glowing ring through telescopes. Visible during summer and autumn in the Northern Hemisphere, Lyra is a favorite of stargazers and astrophotographers."
+}
+
+
   }
   

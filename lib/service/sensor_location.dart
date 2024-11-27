@@ -66,7 +66,7 @@ class SensorLocation with ChangeNotifier {
 
   void _startUpdateTimer() {
     _updateTimer =
-        Timer.periodic(Duration(milliseconds: updateIntervalMs), (timer) {
+        Timer.periodic(const Duration(milliseconds: updateIntervalMs), (timer) {
       _processSensorData();
     });
   }

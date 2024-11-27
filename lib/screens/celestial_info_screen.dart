@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CelestialInfoScreen extends StatelessWidget {
   final String name;
   final String description;
-  final Map<String, String> details; 
+  final Map<String, String> details;
 
   const CelestialInfoScreen({
     super.key,
@@ -24,6 +24,7 @@ class CelestialInfoScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Description
               Text(
                 description,
                 style: const TextStyle(
@@ -32,6 +33,25 @@ class CelestialInfoScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
+
+              // Image
+        Center(
+  child: Image.asset(
+    'assets/${name.toLowerCase().replaceAll(' ', '')}.png',
+    width: 300,
+    height: 300,
+    errorBuilder: (context, error, stackTrace) {
+      return const Text(
+        'Image not available',
+        style: TextStyle(fontSize: 16, color: Colors.grey),
+      );
+    },
+  ),
+),
+               
+              const SizedBox(height: 20),
+
+              // Details
               ...details.entries.map((entry) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
