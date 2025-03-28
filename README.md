@@ -53,19 +53,17 @@ Sun is visiable on the day time.
 - `Are the moon, Mars, and Venus visible in the app?`
 Based on your device location the Mars, Moon, Jupiter and Uranus visible on the night time.
 
-- `Ask student about the constellations of their choice, and try find them in the app. Are the constellations visible in the app?`
+- `Are the constellations visible in the app?`
 Added constellations are: Ursa Major, Ursa Minor, Lyra and Cassiopeia
 
 ![ursa](assets/screenshots/ursa.png)
 ![minor](assets/screenshots/minor.png)
 
-
-- `Check if the retrieved data is either from a public API or from a file. If the data comes from file, check its validity? (ask the student to help you determine if it was an API or a File if necessary)`
   The application uses two **public APIs** to retrieve necessary data for both celestial bodies and constellations. 
   **[JPL Horizons API](https://ssd-api.jpl.nasa.gov/doc/horizons.html)**  Provides precise astronomical data for planetary positions and velocities, based on real-time location and time.
   **[API Ninjas Stars API](https://www.api-ninjas.com/api/stars)** Provides key statistics for thousands of stars discovered in the known universe.
 
-- `Try tapping on the Sun and Mars. Does the app display a short description about the objects such as mass or name?`
+- `Does the app display a short description about the objects such as mass or name?`
 When tapping then the app displays short description. 
 
 ![sun01](assets/screenshots/sun01.png)
@@ -78,6 +76,5 @@ The celestial positions update based on real-time calculations using the deviceâ
 
 The movement can be seen: 
 [(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzY2eWRiZ2t0M2Y0ZmdjMDc0Zm5xcTBkcDd1bW8xaHRnb3A2dnhmMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DlF9BUfgWvmKsuyZrF/giphy.gif)]
-- `Ask student about pattern implementation. If they used BLoC ask them to explain the pattern, and check whether they implemented it correctly. If they used Provider ask them to explain the pattern, and check whether they implemented it correctly. Was the pattern implemented correctly?`
 
 The application uses the Provider pattern. Provider is a state management solution in Flutter. It allows you to manage and share application state efficiently across widgets without passing data down manually through constructors.
