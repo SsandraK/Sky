@@ -13,7 +13,7 @@ A sky map app is a mobile application that provides users with an interactive ma
 ### Installation Steps
 
 1. **Clone the Repository:**
-
+```https://github.com/SsandraK/Sky.git```
 
 2. **Install Flutter SDK:**
 
