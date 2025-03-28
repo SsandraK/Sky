@@ -6,17 +6,16 @@ import 'package:sensors_plus/sensors_plus.dart';
 
 class SensorLocation with ChangeNotifier {
   Position? currentPosition;
-  double? heading; // Magnetic north heading in any tilt position
-  double? tilt; // From accelerometer
-  double? altitude; // Altitude above sea level
+  double? heading;  
+  double? tilt; 
+  double? altitude; 
 
-  // Sensor reading buffers for 3D vectors
   final List<List<double>> accelerometerBuffer = [];
   final List<List<double>> magnetometerBuffer = [];
 
-  static const int bufferSize = 10; // Number of samples for smoothing
+  static const int bufferSize = 10; 
   static const int updateIntervalMs =
-      100; // Update every 100ms for 10 updates per second
+      100; 
 
   late Timer _updateTimer;
   late StreamSubscription<AccelerometerEvent> _accelerometerSubscription;
@@ -74,7 +73,6 @@ class SensorLocation with ChangeNotifier {
   void _updateBuffer(List<List<double>> buffer, List<double> newReading) {
     buffer.add(newReading);
 
-    // Ensure the buffer size does not exceed the defined limit
     if (buffer.length > bufferSize) {
       buffer.removeAt(0);
     }
@@ -83,36 +81,33 @@ class SensorLocation with ChangeNotifier {
   void _processSensorData() {
     if (accelerometerBuffer.isEmpty || magnetometerBuffer.isEmpty) return;
 
-    // Extract accelerometer values
+    // accelerometer values
     final ax = _calculateAverage(accelerometerBuffer, 0);
     final ay = _calculateAverage(accelerometerBuffer, 1);
     final az = _calculateAverage(accelerometerBuffer, 2);
 
-    // Extract magnetometer values
+    // magnetometer values
     final mx = _calculateAverage(magnetometerBuffer, 0);
     final my = _calculateAverage(magnetometerBuffer, 1);
     final mz = _calculateAverage(magnetometerBuffer, 2);
 
-    // Compute roll and pitch
+  
     final roll = atan2(ay, az);
     final pitch = atan2(-ax, sqrt(ay * ay + az * az));
 
-    // Tilt compensation for magnetometer readings
     final compensatedMx = mx * cos(pitch) + mz * sin(pitch);
     final compensatedMy = mx * sin(roll) * sin(pitch) +
         my * cos(roll) -
         mz * sin(roll) * cos(pitch);
 
-    // Calculate heading in degrees
-    heading = (atan2(-compensatedMx, compensatedMy) * (180 / pi) + 360) % 360;
 
-    // Update tilt using the z-axis value of the accelerometer
+    heading = (atan2(-compensatedMx, compensatedMy) * (180 / pi) + 360) % 360;
     tilt = atan2(az, sqrt(ax * ax + ay * ay)) * (180 / pi);
 
     notifyListeners();
   }
 
-  // Helper function to calculate the average of a specific axis from the buffer
+
   double _calculateAverage(List<List<double>> readings, int axis) {
     if (readings.isEmpty) return 0.0;
     return readings.map((reading) => reading[axis]).reduce((a, b) => a + b) /

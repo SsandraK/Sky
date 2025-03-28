@@ -1,7 +1,7 @@
 class Planet {
   final String name;
   final String imagePath;
-  final String command; // Command for fetching data from Horizons API
+  final String command; 
 
   Planet({
     required this.name,

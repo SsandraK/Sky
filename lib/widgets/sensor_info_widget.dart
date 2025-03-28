@@ -9,7 +9,7 @@ class SensorInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<SensorLocation>(
       builder: (context, locationProvider, child) {
-        // Extract and format sensor data
+  
         final latitude = locationProvider.currentPosition?.latitude.toStringAsFixed(3) ?? 'N/A';
         final longitude = locationProvider.currentPosition?.longitude.toStringAsFixed(3) ?? 'N/A';
         final heading = locationProvider.heading?.toStringAsFixed(3) ?? 'N/A';
@@ -20,7 +20,7 @@ class SensorInfoWidget extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // First line: Latitude and Longitude
+             
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -43,7 +43,7 @@ class SensorInfoWidget extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 8),
-              // Second line: Heading and Tilt
+        
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

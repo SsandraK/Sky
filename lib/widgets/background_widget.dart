@@ -12,7 +12,7 @@ class BackgroundWidget extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            // Background Image
+        
             Image.asset(
               'assets/bg_sky.jpeg',
               fit: BoxFit.cover,

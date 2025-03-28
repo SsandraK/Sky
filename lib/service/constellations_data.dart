@@ -10,7 +10,6 @@ class ConstellationDataProvider with ChangeNotifier {
 
   ConstellationDataProvider({required this.apiKey});
 
-  /// Fetch data for a single constellation
   Future<void> fetchConstellationData(String constellation) async {
     final Uri url = Uri.parse('$baseUrl/stars?constellation=$constellation');
 
@@ -28,21 +27,19 @@ class ConstellationDataProvider with ChangeNotifier {
         throw Exception('No data found for constellation: $constellation');
       }
 
-      // Initialize constellation data list
       constellationData[constellation] = [];
 
       for (var star in data) {
-        // Ensure required fields exist
         if (!star.containsKey('right_ascension') ||
             !star.containsKey('declination')) {
-          continue; // Skip invalid data
+          continue;
         }
 
-        // Convert RA and Dec to decimal format
+        // Convert RA and Dec to decimal 
         final double ra = convertToDecimal(star['right_ascension']);
         final double dec = convertToDecimal(star['declination']);
 
-        // Calculate azimuth and altitude
+        // azimuth and altitude
         final Map<String, double> azAlt =
             CelestialCalculations().calculateAzimuthAltitude(
           ra,
@@ -50,7 +47,6 @@ class ConstellationDataProvider with ChangeNotifier {
           DateTime.now().toUtc(),
         );
 
-        // Add the star data along with azimuth and altitude
         constellationData[constellation]!.add({
           'name': star['name'] ?? 'Unknown',
           'right_ascension': star['right_ascension'],
@@ -67,29 +63,24 @@ class ConstellationDataProvider with ChangeNotifier {
     }
   }
 
-  /// Fetch data for all constellations
+
   Future<void> fetchAllConstellationsData(List<String> constellations) async {
     for (var constellation in constellations) {
       await fetchConstellationData(constellation);
     }
     debugPrint("All constellation data fetched: $constellationData");
-// debugPrint("Data for Ursa Minor: ${constellationData['Ursa Minor']}");
-// debugPrint("Data for Ursa Major: ${constellationData['Ursa Major']}");
-// debugPrint("Data for Orion: ${constellationData['Orion']}");
     debugPrint("Data for Orion: ${constellationData['Lyra']}");
   }
 
-  /// Helper method to convert RA/Dec from string to decimal
+
   double convertToDecimal(String input) {
     input = input.replaceAll(RegExp(r'[^\d+\-.\s]'), '');
 
-    // Split by whitespace to get parts (hours/degrees, minutes, seconds)
     final parts =
         input.split(RegExp(r'\s+')).where((part) => part.isNotEmpty).toList();
 
     if (parts.length < 3) return 0.0;
 
-    // Parse components
     final double primary = double.tryParse(parts[0]) ?? 0.0;
     final double minutes = double.tryParse(parts[1]) ?? 0.0;
     final double seconds = double.tryParse(parts[2]) ?? 0.0;

@@ -24,15 +24,12 @@ class SkyMapScreenState extends State<SkyMapScreen> {
   void initState() {
     super.initState();
 
-    // Fetch location data and initialize celestial calculations
     final locationProvider = Provider.of<SensorLocation>(context, listen: false);
     CelestialCalculations.initialize(locationProvider);
 
-    // Fetch planetary data
     final celestialDataProvider = Provider.of<FetchPlanetData>(context, listen: false);
     celestialDataProvider.fetchPlanets();
 
-    // Fetch constellation data
     final constellationDataProvider = Provider.of<ConstellationDataProvider>(context, listen: false);
     constellationDataProvider.fetchAllConstellationsData(constellations);
   }
@@ -47,7 +44,7 @@ class SkyMapScreenState extends State<SkyMapScreen> {
       children: [
         const BackgroundWidget(),
 
-          // Display planets as widgets
+          // Display planets 
           if (celestialDataProvider.planetData.isNotEmpty)
             ...celestialDataProvider.planetData.entries.map((entry) {
               final String planetName = entry.key;
@@ -65,7 +62,7 @@ class SkyMapScreenState extends State<SkyMapScreen> {
               return const SizedBox.shrink();
             }),
 
-          // Display constellations as widgets
+          // Display constellations 
         if (constellationDataProvider.constellationData.isNotEmpty)
       
               ConstellationWidget(
@@ -75,7 +72,7 @@ class SkyMapScreenState extends State<SkyMapScreen> {
                 height: MediaQuery.of(context).size.height,
               ),
 
-          // Sensor info widget at the bottom
+          // Sensor
           const Positioned(
             bottom: 15,
             left: 10,

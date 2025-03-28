@@ -14,7 +14,7 @@ class FetchPlanetData with ChangeNotifier {
   SensorLocation locationProvider;
 
   FetchPlanetData(this.locationProvider) {
-    // Initialize celestial calculations with the location provider
+
     CelestialCalculations.initialize(locationProvider);
     _startPeriodicUpdate();
   }
